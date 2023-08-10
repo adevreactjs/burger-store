@@ -6,7 +6,8 @@ import pizzaReducer from './reducers/PizzaSlice'
 export const store = configureStore({
     reducer: {
         pizzas: pizzaReducer
-    }
+    },
+    devTools: true
 })
 
 
