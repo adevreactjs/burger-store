@@ -1,6 +1,5 @@
 {
   "name": "burger-store",
-  "homepage": "https://burger-store.github.io/adevreactjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
