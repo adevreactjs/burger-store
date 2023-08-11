@@ -28,14 +28,10 @@ export const pizzaSlice = createSlice({
             state.pizza = filterCart
         },
         addToCartItem: (state, action) => {
-            let addPizza = state.pizzasData.filter((item) => item.id === action.payload);
-            // for (const obj of state.cartItems) {
-            //     if (obj.id === addPizza[0].id) {
-            //         state.cartItems.push((addPizza[0]))
-            //     }
-            // }
-            state.cartItems.push((addPizza[0]))
-
+            let addPizza = state.pizzasData.filter((item) => {
+                return item.id === action.payload
+            });
+            state.cartItems.push(...addPizza)
         },
         removeCartItem: (state, action) => {
             state.cartItems = action.payload
