@@ -30,7 +30,7 @@ const CartPage = () => {
             <div
                 className='h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40'>
                 {
-                  pleasent &&  <h1 className='uppercase sm:text-xl text-4xl font-bold text-red-500 flex justify-center'>Thank you for order</h1>
+                  pleasent &&  <h1 className='uppercase sm:text-xl md:text-4xl font-bold text-red-500 flex justify-center'>Thank you for order</h1>
                 }
                 {cartItems.map((item) => {
 
