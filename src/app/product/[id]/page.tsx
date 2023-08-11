@@ -15,7 +15,6 @@ const SingleProductPage = () => {
         const chooseOption = pizza[0].options[option]
         const newPizza = pizza.map((item) => ({...item, 'options': [chooseOption], 'count': quantity, 'price': total}))
         dispatch(addToCartWithOptions(newPizza))
-        console.log('e')
     }
 
     return (

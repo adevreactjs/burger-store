@@ -29,13 +29,25 @@ export const pizzaSlice = createSlice({
         },
         addToCartItem: (state, action) => {
             let addPizza = state.pizzasData.filter((item) => item.id === action.payload);
-            state.cartItems.push(addPizza[0])
+            // for (const obj of state.cartItems) {
+            //     if (obj.id === addPizza[0].id) {
+            //         state.cartItems.push((addPizza[0]))
+            //     }
+            // }
+            state.cartItems.push((addPizza[0]))
+
         },
         removeCartItem: (state, action) => {
             state.cartItems = action.payload
         },
         addToCartWithOptions: (state, action) => {
-            state.cartItems.push(...action.payload)
+            if(state.cartItems.includes(action.payload)) {
+                console.log('t')
+
+            } else {
+                state.cartItems.push(...action.payload)
+
+            }
         }
     }
 })
