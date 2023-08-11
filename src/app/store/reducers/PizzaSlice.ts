@@ -41,13 +41,7 @@ export const pizzaSlice = createSlice({
             state.cartItems = action.payload
         },
         addToCartWithOptions: (state, action) => {
-            if(state.cartItems.includes(action.payload)) {
-                console.log('t')
-
-            } else {
-                state.cartItems.push(...action.payload)
-
-            }
+            state.cartItems.push(...action.payload)
         }
     }
 })

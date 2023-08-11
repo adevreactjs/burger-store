@@ -1,11 +1,12 @@
 'use client'
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/app/store/store";
 import {removeCartItem} from "@/app/store/reducers/PizzaSlice";
 
 const CartPage = () => {
+    const [pleasent, setPleasent] = useState(false)
     const cartItems = useSelector((state: RootState) => state.pizzas.cartItems)
     const dispatch = useDispatch()
     const sumSubTotal = cartItems.reduce((previousValue, currentValue) => {
@@ -17,11 +18,20 @@ const CartPage = () => {
         dispatch(removeCartItem(removeItem))
     }
 
+    const checkoutHandler = () => {
+        console.log('t')
+        dispatch(removeCartItem([]))
+        setPleasent(true)
+    }
+
     return (
         <div className='h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row'>
             {/*Products container*/}
             <div
                 className='h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-40'>
+                {
+                  pleasent &&  <h1 className='uppercase sm:text-xl text-4xl font-bold text-red-500 flex justify-center'>Thank you for order</h1>
+                }
                 {cartItems.map((item) => {
 
                     return (
@@ -35,12 +45,12 @@ const CartPage = () => {
                             </div>
                             <h2 className='font-bold'>${item.price.toFixed(1)}</h2>
                             <span>{item.count}</span>
-
                             <span onClick={() => removeItem(item.id)} className='cursor-pointer'>X</span>
                         </div>
                     );
                 })}
             </div>
+
             {/*Payment container*/}
             <div
                 className='h-1/2 p-4 bg-fuchsia-50 flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-40 2xl:text-xl 2xl:gap-6'>
@@ -61,7 +71,9 @@ const CartPage = () => {
                     <span className='uppercase'>Total(incl. vat)</span>
                     <span className='uppercase font-bold'>${sumSubTotal}</span>
                 </div>
-                <button className='bg-red-500 text-white p-3 rounded-md w-1/2 self-end'>Checkout</button>
+                <button onClick={() => checkoutHandler()}
+                        className='bg-red-500 text-white p-3 rounded-md w-1/2 self-end'>Checkout
+                </button>
             </div>
 
         </div>
