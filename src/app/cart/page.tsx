@@ -19,7 +19,6 @@ const CartPage = () => {
     }
 
     const checkoutHandler = () => {
-        console.log('t')
         dispatch(removeCartItem([]))
         setPleasent(true)
     }

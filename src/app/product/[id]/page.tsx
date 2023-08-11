@@ -5,16 +5,20 @@ import Image from "next/image";
 import Price from "@/components/Price";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/app/store/store";
-import {addToCartWithOptions} from "@/app/store/reducers/PizzaSlice";
+import {addToCartItem, addToCartWithOptions} from "@/app/store/reducers/PizzaSlice";
 
 const SingleProductPage = () => {
 
     const pizza = useSelector((state: RootState) => state.pizzas.pizza);
+    const cartItems = useSelector((state: RootState) => state.pizzas.cartItems)
+
     const dispatch = useDispatch()
     const setOptions = (option: number, quantity: number, total: number) => {
         const chooseOption = pizza[0].options[option]
         const newPizza = pizza.map((item) => ({...item, 'options': [chooseOption], 'count': quantity, 'price': total}))
-        dispatch(addToCartWithOptions(newPizza))
+        if (!cartItems.some(item => item.id === pizza[0].id)) {
+            dispatch(addToCartWithOptions(newPizza))
+        }
     }
 
     return (
